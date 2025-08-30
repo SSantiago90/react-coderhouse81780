@@ -1,0 +1,13 @@
+.item-card {
+  background-color: #fff;
+  border-radius: 10px;
+  color: rgb(28, 32, 46);
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.item-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
