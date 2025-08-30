@@ -1,4 +1,5 @@
 import './App.css'
+import CartWidget from './components/CartWidget'
 import Item from './components/Item'
 import ItemListContainer from './components/ItemListContainer'
 import NavBar from './components/NavBar'
@@ -9,6 +10,7 @@ function App() {
     <>
       {/* Componentes para entrega */}
       <NavBar></NavBar>
+     
       <ItemListContainer greeting="Hola usuario"/>
       {/* Codigo de ejemplos vistos en clase */}
       <hr/>
