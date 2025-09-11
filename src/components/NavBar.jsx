@@ -1,3 +1,5 @@
+import CartWidget from "./CartWidget"
+
 function NavBar(){
   return (
     <nav>
@@ -15,8 +17,8 @@ function NavBar(){
           Zapatillas
         </li>
       </ul>
-      {/* Rendericemos el componente CartWidget */}
-      <span>📅</span>
+     
+      <span><CartWidget/></span>
     </nav>
   )
 }

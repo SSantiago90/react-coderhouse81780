@@ -1,9 +1,5 @@
-import { ShoppingCart } from 'lucide-react';
-
 function CartWidget(){
-  return <i>
-    <ShoppingCart/>
-  </i>
+  return <i>🛒 <span>0</span> </i>
 }
 
 export default CartWidget

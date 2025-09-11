@@ -1,22 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Item.css';
 
 function Item( props ) {
-  /* SIN ESTADO😢 */
-  /* let stateCart = "No agregado al carrito"; */
-
-  /*  CON ESTADO💓 */
   const [state, setState] = useState("No agregado al carrito aún")
   
+  // Tarea ejecutada en cada update/render
+ // console.log("Renderizando...", props.title) 
+ 
 
-  console.log(state);
+  useEffect(
+    () =>{      
+        console.log("Obteniendo datos de la Base de Datos/API...🗂️")
+    }, 
+    []
+  )
+ 
+  useEffect(() => {
+    // acceder al dom
+    const botonDOM = document.getElementById("item-DOM")
+    console.log(botonDOM)
+  }, [])
   
+
   function agregarAlCarrito(){
-    //state = "texto nuevo" -> MAL
-    alert("Agregaste correctamente al carrito!");
-    
-    // Imprimamos/rendericemos algo nuevo
-    setState("Item agregado al carrito")
+    alert("Agregaste correctamente al carrito!");   
+    setState(`Item agregado al carrito a la hora: ${ new Date().toUTCString()}` )
   }
   
   return (
@@ -28,8 +36,9 @@ function Item( props ) {
               $ { props.price }
           </span>
       </p>
-      {/* Eventos -> camelCase */} 
-      <button onClick={ agregarAlCarrito } >
+      <hr/>
+      <p style={{ fontSize: "10px"}}>{props.description}</p>
+      <button id="item-DOM" onClick={ agregarAlCarrito } >
         Agregar al carrito
       </button>
       <br/>
