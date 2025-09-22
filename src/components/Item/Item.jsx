@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import './Item.css';
+import { Link } from "react-router";
 
 function Item( props ) {
   const [state, setState] = useState("No agregado al carrito aún")
-  
-  // Tarea ejecutada en cada update/render
- // console.log("Renderizando...", props.title) 
- 
 
   useEffect(
     () =>{      
@@ -16,7 +13,6 @@ function Item( props ) {
   )
  
   useEffect(() => {
-    // acceder al dom
     const botonDOM = document.getElementById("item-DOM")
     console.log(botonDOM)
   }, [])
@@ -29,20 +25,29 @@ function Item( props ) {
   
   return (
     <div className="item-card">
-      <h3 className="item-title">{props.title}</h3>
-      <img height="200" src={props.imgURL} alt="img-product"></img>
-      <p>Precio 
-          <span>
-              $ { props.price }
-          </span>
-      </p>
+      <h3 className="item-card-title">{props.title}</h3>
+       <img 
+        className="item-card-img"
+        height="250"
+        src={props.imgURL}
+        alt={props.title}
+      /> 
+      <h3 className="item-card-price">Precio: $ {props.price}</h3>      
       <hr/>
-      <p style={{ fontSize: "10px"}}>{props.description}</p>
+      <p className="item-card-content">{props.description}</p>
+      <div className="item-card-buttons">
+        
+      <Link to={`/detail/${props.id}`}>
+        <button>
+          Ver Detalle
+        </button>
+      </Link>
       <button id="item-DOM" onClick={ agregarAlCarrito } >
         Agregar al carrito
       </button>
+      </div>
       <br/>
-      <small>{state}</small>
+      <small className="item-card-footer">{state}</small>
 
     </div>
   )

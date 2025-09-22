@@ -1,21 +1,35 @@
+import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
-import ItemListContainer from './components/ItemListContainer'
-import NavBar from './components/NavBar'
-import StateHook from './components/StateHook'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import NavBar from './components/NavBar/NavBar'
+
 
 function App() {  
   return (
-    <>    
+    <BrowserRouter>    
+    <main className="container">
       <NavBar/>     
-      <ItemListContainer greeting="Hola usuario"/>   
-     
-      <div>     
-        <hr/>
-        <h2>Clase 2</h2>      
-          <h2>Componente de Estado</h2>
-          <StateHook />
-      </div>
-    </>
+      <Routes>
+        <Route 
+          path="/" 
+          element={<ItemListContainer greeting="Bienvenidos a la tienda"/>} 
+          />
+        <Route 
+          path="/category/:categParam"
+          element={<ItemListContainer greeting="Categorías de productos"/>}
+          />
+        <Route
+         path="/detail/:idParam"
+         element={<ItemDetailContainer/>}
+         />
+         <Route
+          path="*"
+          element={<h1>Oops! No encontramos está página</h1>}
+          />
+      </Routes>
+      </main>
+    </BrowserRouter>
   )
 }
 

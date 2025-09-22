@@ -1,0 +1,23 @@
+  .item-list-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+      }
+      .item-list-container__loading {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .item-list {
+        justify-content: center;        
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 12px;
+      }
+      .item-list > * {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 0.25rem;
+        padding: 1rem;
+      }
