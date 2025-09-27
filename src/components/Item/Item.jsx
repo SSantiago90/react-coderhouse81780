@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './Item.css';
 import { Link } from "react-router";
 
 function Item( props ) {
   const [state, setState] = useState("No agregado al carrito aún")
 
-  useEffect(
+ /*  useEffect(
     () =>{      
         console.log("Obteniendo datos de la Base de Datos/API...🗂️")
     }, 
@@ -16,7 +16,7 @@ function Item( props ) {
     const botonDOM = document.getElementById("item-DOM")
     console.log(botonDOM)
   }, [])
-  
+   */
 
   function agregarAlCarrito(){
     alert("Agregaste correctamente al carrito!");   

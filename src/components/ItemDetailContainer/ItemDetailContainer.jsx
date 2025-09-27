@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { getProductById } from "../../data/mockAPI";
 import { useParams } from "react-router"
 import './ItemDetailContainer.css';
+import { useContext } from "react";
+import cartContext from "../../context/cartContext";
 
 export default function ItemDetailContainer() {
   const { idParam } = useParams();  
   const [ item, setItem] = useState(null)
-
+  const { addToCart } = useContext(cartContext)
+  
   useEffect( () => {
       getProductById(idParam).then( res => setItem(res)); 
   }, [])
@@ -28,8 +31,8 @@ export default function ItemDetailContainer() {
             <div>
               <p className="item-detail-description">{item.description}</p>
               <h3 className="item-detail-price">Precio: $ {item.price}</h3>
-              <button>Agregar al carrito</button>
-            </div>
+              <button onClick={ () => addToCart(item)}>Agregar al carrito</button>
+            </div>            
         </div>
         </div>
       :
