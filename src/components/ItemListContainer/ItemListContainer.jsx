@@ -1,13 +1,12 @@
 import Item from '../Item/Item';
-import getProducts, { getProductByCategory } from '../../data/mockAPI'
+import { getProducts, getProductByCategory  } from '../../data/firestore';
+
 import { useEffect, useState } from 'react';
 import './ItemListContainer.css'
 import { useParams } from 'react-router';
 function ItemListContainer( props ){  
   const [products, setProducts] = useState([]);
   const { categParam } = useParams();
-  
-  console.log("Renderizando ILC💓")
 
   useEffect( () =>{
     if (categParam){

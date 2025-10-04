@@ -6,16 +6,7 @@ const cartContext = createContext(null);
 // CRUD -> Create/read/update/delete
 export function CartContextProvider(props){
   const [cartItems, setCartItems] = useState([]);
-
-  console.log("🛒 Cart Items:", cartItems)
-
- /*  function addToCart(item){
-    alert(`Agregaste una unidad de ${item.title} al carrito`);       
-    const newCart = structuredClone(cartItems);
-    newCart.push(item);
-    setCartItems(newCart)
-  } */
-
+  
   function addToCart(newItem){
     const newCart = structuredClone(cartItems);
 

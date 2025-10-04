@@ -1,10 +1,16 @@
 import { useContext } from "react"
 import cartContext from "../../context/cartContext"
+import { createBuyOrder } from "../../data/firestore";
 
 
 function CartContainer(){
   const { cart, removeItem } = useContext(cartContext);
 
+  async function handlePayment(){
+    const orderDocument = await createBuyOrder(cart)
+    console.log(orderDocument)
+    alert(`Hiciste tu compra! - el ID de tu compra es: ${orderDocument.id}`)
+  }
 
   // renderizado condicional
   if ( cart.length === 0 ){
@@ -35,7 +41,7 @@ function CartContainer(){
         <h3>Total de tu Compra: $ 999</h3>
       </div>
       <div>
-        <button>Pagar</button>
+        <button onClick={handlePayment}>Pagar</button>
       </div>
     </section>
   )

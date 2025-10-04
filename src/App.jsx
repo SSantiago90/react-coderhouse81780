@@ -6,10 +6,9 @@ import NavBar from './components/NavBar/NavBar'
 import { CartContextProvider } from './context/cartContext'
 import CartContainer from './components/CartContainer/CartContainer'
 
-function App() {  
-
+function App() {    
   return (
-    <CartContextProvider>
+    <CartContextProvider>      
       <BrowserRouter>    
       <main className="container">
         <NavBar/>     

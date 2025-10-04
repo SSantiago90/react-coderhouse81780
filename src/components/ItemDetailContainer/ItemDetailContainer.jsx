@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProductById } from "../../data/mockAPI";
+import { getProductById } from "../../data/firestore";
 import { useParams } from "react-router"
 import './ItemDetailContainer.css';
 import { useContext } from "react";
