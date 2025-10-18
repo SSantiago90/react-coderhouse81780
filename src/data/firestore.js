@@ -2,13 +2,15 @@
 import { initializeApp } from "firebase/app";
 import { collection, doc, getDoc, getDocs, query, where, addDoc, getFirestore } from "firebase/firestore";
 import products from './products'
+
+// ? Credentials / secrets / env variables / keys
 const firebaseConfig = {
-  apiKey: "AIzaSyDh045Gh9Q4BKTNTbAqvmiyd60jDd37mKw",
+  apiKey: import.meta.env.VITE_FIRESTORE_APIKEY,
   authDomain: "react-81780.firebaseapp.com",
-  projectId: "react-81780",
+  projectId: import.meta.env.VITE_FIRESTORE_PROJECT_ID,
   storageBucket: "react-81780.firebasestorage.app",
   messagingSenderId: "411912173923",
-  appId: "1:411912173923:web:3163bd0b6902ec07213b56"
+  appId: import.meta.env.VITE_FIRESTORE_APP_ID,
 };
 
 // 1. Inicializar el servicio   
@@ -59,17 +61,14 @@ export async function getProductByCategory(categParam){
 
 }
 
-export async function createBuyOrder( orderData ){
-  const buyer = { name: "Matias", email: "xXmati2002xX@hotmail.com", phone: "123123123"};
-  const order = { 
-    cart: orderData, 
-    buyer,
-    total: 9999,
-    date: new Date(),
-  }
+/**
+ * Crea una orden de compra en firestore.
+ * @param {object} orderData - { buyer, cart, date, total}
+ */
+export async function createBuyOrder( orderData ){ 
 
   const ordersRef = collection(db, "orders");
-  const newOrderDoc = await addDoc(ordersRef, order)
+  const newOrderDoc = await addDoc(ordersRef, orderData)
   return newOrderDoc;
 }
 

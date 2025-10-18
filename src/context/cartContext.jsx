@@ -37,12 +37,17 @@ export function CartContextProvider(props){
     const newCartWithDelete = newCart.filter( item => item.id !== idDelete )
     setCartItems(newCartWithDelete)
   }
+
+  function clearCart(){
+    setCartItems([])
+  }
   
   return <cartContext.Provider value={ 
     {cart: cartItems, 
     addToCart, 
     countItems, 
-    removeItem}
+    removeItem,
+    clearCart}
   }>
       { props.children }
     </cartContext.Provider>

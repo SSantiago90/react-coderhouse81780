@@ -1,14 +1,23 @@
 import { useContext } from "react"
 import cartContext from "../../context/cartContext"
 import { createBuyOrder } from "../../data/firestore";
+import FormCheckout from "./FormCheckout";
 
 
 function CartContainer(){
-  const { cart, removeItem } = useContext(cartContext);
+  const { cart, clearCart, removeItem } = useContext(cartContext); 
 
-  async function handlePayment(){
-    const orderDocument = await createBuyOrder(cart)
+  async function handleCheckout(formData){
+    const buyOrder = {
+      buyer: formData,
+      cart: cart,
+      date: new Date(),
+      total: 9999
+    }
+
+    const orderDocument = await createBuyOrder(buyOrder)
     console.log(orderDocument)
+    clearCart();
     alert(`Hiciste tu compra! - el ID de tu compra es: ${orderDocument.id}`)
   }
 
@@ -26,22 +35,25 @@ function CartContainer(){
   return(
     <section>
       <h2>Tu carrito de compras</h2>
-      <ul>
-        {
-          cart.map( itemInCart => <div>
-            <h4>{itemInCart.title}</h4>
-            <p>Price: {itemInCart.price}</p>
-            <p>Quantity: {itemInCart.count} </p>
-            <button onClick={ () => removeItem(itemInCart.id) }>🗑️</button>
-          </div>)
-        }
-      </ul>
+      <div>
+        <ul>
+          {
+            cart.map( itemInCart => <div>
+              <h4>{itemInCart.title}</h4>
+              <p>Price: {itemInCart.price}</p>
+              <p>Quantity: {itemInCart.count} </p>
+              <button onClick={ () => removeItem(itemInCart.id) }>🗑️</button>
+            </div>)
+          }
+        </ul>
+        <button>Vaciar carrito</button>
+      </div>
       <hr/>
       <div>
         <h3>Total de tu Compra: $ 999</h3>
       </div>
       <div>
-        <button onClick={handlePayment}>Pagar</button>
+        <FormCheckout handleCheckout={handleCheckout} />
       </div>
     </section>
   )
